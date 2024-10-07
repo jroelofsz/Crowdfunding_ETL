@@ -1,5 +1,5 @@
 --created crowdfunding db
---CREATE DATABASE crowdfunding_db;
+CREATE DATABASE crowdfunding_db;
 
 --create contacts table
 CREATE TABLE contacts (
@@ -11,14 +11,13 @@ CREATE TABLE contacts (
 
 CREATE TABLE category (
 	category_id varchar(4) PRIMARY KEY,
-	category char(12)
+	category char(25)
 );
 
 CREATE TABLE subcategory (
-	subcategory_id varchar(4) PRIMARY KEY,
-	subcategory char(12)
+	subcategory_id varchar(8) PRIMARY KEY,
+	subcategory char(25)
 );
-
 
 CREATE TABLE campaign (
 	cf_id int PRIMARY KEY,
@@ -31,8 +30,8 @@ CREATE TABLE campaign (
 	backers_count int,
 	country char(2),
 	currency char(3),
-	launch_date date,
-	end_date date,
+	launch_date timestamp,
+	end_date timestamp,
 	category_id varchar(4),
 	subcategory_id varchar(8),
 	FOREIGN KEY (category_id) REFERENCES category(category_id),
@@ -40,8 +39,15 @@ CREATE TABLE campaign (
 	FOREIGN KEY (contact_id) REFERENCES contacts(contact_id)
 );
 
---import data
-COPY contacts(contact_id,first_name,last_name,email)
-FROM 'C:\sampledb\persons.csv'
-DELIMITER ','
-CSV HEADER;
+--please import the data into the tables before running the SQL below
+SELECT *
+FROM contacts
+
+SELECT * 
+FROM category
+
+SELECT * 
+FROM subcategory
+
+SELECT *
+FROM campaign
